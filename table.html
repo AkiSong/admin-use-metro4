@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Document</title>
+    <link rel="stylesheet" href="dist\metro-all.min.css" />
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <aside
+      id="sb1"
+      class="sidebar pos-absolute z-2"
+      data-role="sidebar"
+      data-toggle="#sidebar-toggle"
+      data-shift=".shifted-content"
+    >
+      <div class="sidebar-header bg-blue">
+        <a
+          href="/"
+          class="fg-white sub-action bg-red"
+          onclick="Metro.sidebar.close('#sb1'); return false;"
+        >
+          <span class="mif-arrow-left mif-2x"></span>
+        </a>
+        <div class="avatar">
+          <!-- <img data-role="gravatar"
+                   data-email="sergey@pimenov.com.ua"> -->
+        </div>
+        <span class="title">Metro 4 Components Library</span>
+        <span class="subtitle"> 2018 © Sergey Pimenov</span>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="group-title">分类1</li>
+        <li><a href="./index.html">主页</a></li>
+        <li>
+          <a class="dropdown-toggle"><span class="mif-tree icon"></span>功能</a>
+          <ul class="d-menu" data-role="dropdown" style="display: none;">
+            <li class="active"><a>表格</a></li>
+            <li class="divider"></li>
+            <li><a href="./login.html">登陆</a></li>
+          </ul>
+        </li>
+        <li class="disabled"><a>登出</a></li>
+
+        <li class="group-title">分类2</li>
+        <li><a>Other Item 1</a></li>
+      </ul>
+    </aside>
+
+    <!-- header -->
+    <div class="shifted-content h-100 p-ab">
+      <div
+        data-role="appbar"
+        class="app-bar pos-absolute bg-red z-1"
+        data-expand-point="md"
+      >
+        <a href="#" class="brand no-hover pos-absolute pos-top-right">
+          logo
+        </a>
+
+        <button class="app-bar-item c-pointer" id="sidebar-toggle">
+          <span class="mif-menu fg-white"></span>
+        </button>
+
+        <ul class="app-bar-menu">
+          <li><a href="#">Home</a></li>
+          <li>
+            <a href="#" class="dropdown-toggle">Products</a>
+            <ul class="d-menu" data-role="dropdown">
+              <li><a href="#">Windows 10</a></li>
+              <li><a href="#">Office 365</a></li>
+              <li class="divider bg-lightGray"></li>
+              <li><a href="#">Skype</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contacts</a></li>
+        </ul>
+      </div>
+
+      <div class="h-100 p-4">
+        <div class="container">
+          <h1 class="text-center">Metro 4 Table component</h1>
+          <h3 class="text-center">Inspector, export, custom filter</h3>
+
+          <div class="row flex-justify-between flex-nowrap ml-0 mr-0 mt-2">
+            <div class="w-100">
+              <div id="table-search"></div>
+            </div>
+            <div class="no-wrap ml-1">
+              <div id="table-actions" class="d-flex flex-align-center">
+                <div class="dropdown-button">
+                  <button class="button">
+                    <span class="mif-more-horiz"></span>
+                  </button>
+                  <ul class="d-menu context shadow-3" data-role="dropdown">
+                    <li>
+                      <a
+                        href="#"
+                        onclick="$('#demo-table').data('table').export('CSV', 'all', 'export-all.csv')"
+                        ><span class="mif-upload2 fg-cyan icon"></span> Export
+                        all</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        onclick="$('#demo-table').data('table').export('CSV', 'all-filtered', 'export-all-filtered.csv')"
+                        ><span class="mif-upload2 fg-cyan icon"></span> Export
+                        filtered</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        onclick="$('#demo-table').data('table').export('CSV', 'checked', 'export-checked.csv')"
+                        ><span class="mif-upload2 fg-steel icon"></span> Export
+                        selected</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        onclick="$('#demo-table').data('table').export('CSV', 'view', 'export-view.csv')"
+                        ><span class="mif-upload2 fg-brown icon"></span> Export
+                        current view</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+
+                <a
+                  onclick="$('#demo-table').data('table').toggleInspector()"
+                  class="button ml-1"
+                  ><span class="mif-cog"></span
+                ></a>
+
+                <input
+                  type="checkbox"
+                  class=""
+                  data-role="switch"
+                  data-caption="Show inactive users"
+                  onclick="$(this).is(':checked') ? tableFuncs.removeArchiveFilter() : tableFuncs.addArchiveFilter()"
+                />
+              </div>
+            </div>
+          </div>
+
+          <table
+            id="demo-table"
+            class="table table-border striped row-hover mt-4 entities-table"
+            style="min-width: 300px!important;"
+            data-role="table"
+            data-source="table-asp.json"
+            data-cls-table-top="row"
+            data-cls-search="cell-md-8"
+            data-table-search-title="搜索:"
+            data-table-rows-count-title="数量"
+            data-all-records-title="全部"
+            data-rows="10"
+            data-rows-steps="-1, 10, 20, 50, 100"
+            data-rows-wrapper="#rows-count"
+            data-search-wrapper="#table-search"
+            data-pagination-wrapper="#pagination"
+            data-inspector-title="Inspector"
+            data-on-draw-cell="tableFuncs.onDrawCell"
+            data-on-draw-row="tableFuncs.onDrawRow"
+            data-check="true"
+            data-check-col-index="0"
+            data-check-store-key="MY_STORE_FOR_TABLE:$1"
+			data-view-save-mode="client"
+			data-table-info-title=""
+			data-rownum="true"
+			data-check="true"
+          ></table>
+
+          <div class="row">
+            <div class="cell-md-8">
+              <div id="pagination"></div>
+            </div>
+            <div class="cell-md-4">
+              <div id="rows-count" class="cell-md-8"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="dist\jquery.min.js"></script>
+    <script src="dist\metro.min.js"></script>
+
+    <script>
+      var tableFuncs = {
+        onDrawCell: function(td, raw_data, index, head) {
+          var html = "";
+          if (head.name === "is_active") {
+            html =
+              parseInt(raw_data) === 1
+                ? "<span class='fg-green mif-checkmark'></span>"
+                : "<span class='fg-red mif-minus js-archive-record'></span>";
+            td.html(html);
+          }
+          if (head.name === "is_editor") {
+            html =
+              parseInt(raw_data) === 1
+                ? "<span class='fg-green mif-checkmark'></span>"
+                : "<span class='fg-red mif-minus'></span>";
+            td.html(html);
+          }
+          if (head.name === "is_scanner") {
+            html =
+              parseInt(raw_data) === 1
+                ? "<span class='fg-green mif-checkmark'></span>"
+                : "<span class='fg-red mif-minus'></span>";
+            td.html(html);
+          }
+        },
+
+        onDrawRow: function(tr) {
+          if (tr.find(".js-archive-record").length > 0) {
+            tr.addClass("archive-record bg-lightGray");
+          }
+        },
+
+        archiveFilterIndex: 0,
+
+        addArchiveFilter: function() {
+          var entities_table = $("#demo-table");
+          var table;
+
+          if (entities_table.length === 0) {
+            return;
+          }
+
+          table = entities_table.data("table");
+          this.archiveFilterIndex = table.addFilter(function(row, heads) {
+            var is_active_index = 0;
+            heads.forEach(function(el, i) {
+              if (el.name === "is_active") {
+                is_active_index = i;
+              }
+            });
+            return parseInt(row[is_active_index]) === 1;
+          }, true);
+        },
+
+        removeArchiveFilter: function() {
+          var entities_table = $("#demo-table");
+          var table;
+
+          if (entities_table.length === 0) {
+            return;
+          }
+          table = entities_table.data("table");
+          table.removeFilter(this.archiveFilterIndex, true);
+        }
+      };
+
+      tableFuncs.addArchiveFilter();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <title>Document</title>
+
+    <link rel="stylesheet" href="dist\metro-all.min.css" />
+
+    <style>
+        .login-form {
+            width: 350px;
+            height: auto;
+            top: 50%;
+            margin-top: -160px;
+        }
+    </style>
+</head>
+
+<body class="h-vh-100 bg-brandColor2">
+
+    <form class="login-form bg-white p-6 mx-auto border bd-default win-shadow" data-role="validator"
+        action="javascript:" data-clear-invalid="2000" data-on-error-form="invalidForm"
+        data-on-validate-form="validateForm" data-interactive-check="true">
+        <span class="mif-vpn-lock mif-4x place-right" style="margin-top: -10px;"></span>
+        <h2 class="text-light">Login to service</h2>
+        <hr class="thin mt-4 mb-4 bg-white">
+        <div class="form-group">
+            <input type="text" data-role="input" data-prepend="<span class='mif-envelop'>"
+                placeholder="Enter your email..." data-validate="required email" name="email">
+            <span class="invalid_feedback">
+                请填写邮箱
+            </span>
+        </div>
+        <div class="form-group">
+            <input type="password" data-role="input" data-prepend="<span class='mif-key'>"
+                placeholder="Enter your password..." data-validate="required minlength=6" name="password">
+            <span class="invalid_feedback">
+                最小密码长度6位
+            </span>
+        </div>
+        <div class="form-group mt-10">
+            <input type="checkbox" data-role="checkbox" data-caption="Remember me" class="place-right">
+            <button class="button success" type="submit">提交</button>
+            <button class="button warning" type="reset">重置</button>
+        </div>
+    </form>
+
+    <script src="dist\jquery.min.js"></script>
+    <script src="dist\metro.min.js"></script>
+
+    <script>
+        function invalidForm(e) {
+            var form = $(this);
+            alert("表单校验失败" + e[0].name + '|' + e[1].name)
+        }
+
+        function validateForm(e) {
+            alert('表单校验成功' + e.email + '|' + e.password)
+            window.location.href = "./index.html"
+        }
+    </script>
+</body>
+
+</html>

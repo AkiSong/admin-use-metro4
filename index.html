@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Document</title>
+
+  <link rel="stylesheet" href="dist\metro-all.min.css" />
+
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <aside id="sb1" class="sidebar pos-absolute z-2" data-role="sidebar" data-toggle="#sidebar-toggle"
+    data-shift=".shifted-content">
+    <div class="sidebar-header bg-blue">
+      <a href="/" class="fg-white sub-action bg-red" onclick="Metro.sidebar.close('#sb1'); return false;">
+        <span class="mif-arrow-left mif-2x"></span>
+      </a>
+      <div class="avatar">
+        <!-- <img data-role="gravatar"
+               data-email="sergey@pimenov.com.ua"> -->
+      </div>
+      <span class="title">Metro 4 Components Library</span>
+      <span class="subtitle"> 2018 © Sergey Pimenov</span>
+    </div>
+
+    <ul class="sidebar-menu">
+      <li class="group-title">分类1</li>
+      <li class="active bg-red"><a>主页</a></li>
+      <li>
+        <a class="dropdown-toggle"><span class="mif-tree icon"></span>功能</a>
+        <ul class="d-menu" data-role="dropdown" style="display: none;">
+          <li><a href="./table.html">表格</a></li>
+          <li class="divider"></li>
+          <li><a href="./login.html">登陆</a></li>
+        </ul>
+      </li>
+      <li class="disabled"><a>登出</a></li>
+
+      <li class="group-title">分类2</li>
+      <li><a>Other Item 1</a></li>
+    </ul>
+  </aside>
+
+  <!-- header -->
+  <div class="shifted-content h-100 p-ab">
+    <div data-role="appbar" class="app-bar pos-absolute bg-red z-1" data-expand-point="md">
+      <a href="#" class="brand no-hover pos-absolute pos-top-right">
+        logo
+      </a>
+
+      <button class="app-bar-item c-pointer" id="sidebar-toggle">
+        <span class="mif-menu fg-white"></span>
+      </button>
+
+      <ul class="app-bar-menu">
+        <li><a href="#">Home</a></li>
+        <li>
+          <a href="#" class="dropdown-toggle">Products</a>
+          <ul class="d-menu" data-role="dropdown">
+            <li><a href="#">Windows 10</a></li>
+            <li><a href="#">Office 365</a></li>
+            <li class="divider bg-lightGray"></li>
+            <li><a href="#">Skype</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contacts</a></li>
+      </ul>
+    </div>
+
+    <div class="h-100 p-4">
+      <p class="h1">What is Lorem Ipsum?</p>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s ...
+      </p>
+    </div>
+  </div>
+
+
+
+  <script src="dist\jquery.min.js"></script>
+  <script src="dist\metro.min.js"></script>
+</body>
+
+</html>
